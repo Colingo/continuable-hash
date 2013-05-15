@@ -10,6 +10,10 @@ function hash(tasks) {
         var keys = Object.keys(tasks)
         var length = keys.length
 
+        if (length === 0) {
+            return callback(null, result)
+        }
+
         keys.forEach(function (key) {
             var source = tasks[key]
 
