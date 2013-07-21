@@ -4,25 +4,22 @@ module.exports = hash
 //      => Continuable<Object<String, T>>
 function hash(tasks) {
     return function continuable(callback) {
-        var result = {}
-        var ended = false
-        var count = 0
         var keys = Object.keys(tasks)
-        var length = keys.length
+        var count = 0
+        var result = {}
 
-        if (length === 0) {
+        if (keys.length === 0) {
             return callback(null, result)
         }
 
         keys.forEach(function (key) {
-            var source = tasks[key]
-
-            source(function (err, value) {
-                if (err && !ended) {
+            tasks[key](function (err, value) {
+                if (err && result) {
+                    result = null
                     callback(err)
-                } else if (!err) {
+                } else if (!err && result) {
                     result[key] = value
-                    if (++count === length) {
+                    if (++count === keys.length) {
                         callback(null, result)
                     }
                 }
