@@ -1,8 +1,8 @@
 var test = require("tape")
 
-var continuable-hash = require("../index")
+var continuableHash = require("../index")
 
 test("continuable-hash is a function", function (assert) {
-    assert.equal(typeof continuable-hash, "function")
+    assert.equal(typeof continuableHash, "function")
     assert.end()
 })

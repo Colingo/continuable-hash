@@ -1,4 +1,6 @@
-module.exports = hash
+var maybeCallback = require("continuable/maybe-callback")
+
+module.exports = maybeCallback(hash)
 
 //  hash := (tasks:Object<String, Continuable<T>>)
 //      => Continuable<Object<String, T>>
